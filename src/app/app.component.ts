@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
   panelfirmDynaExtract() {
     console.log('panelfirmDynaExtract START');
-    let tkarr;
+    let tkarr: [];
     //Table headers Extraction
     let tableHeaders = this.templateMetaData.flexFieldLabel
       .slice(1, -1)
@@ -40,11 +40,12 @@ export class AppComponent implements OnInit {
     if (true) {
       console.log('inside if');
       for (let i = 0; i <= 4; i++) {
-        console.log('INSIDE');
+        console.log(flexFieldNames[i]);
         let tempObj = {
           flexFieldName: flexFieldNames[i],
           flexFieldLabel: tableHeaders[i],
         };
+        console.log(tempObj);
         tkarr.push(tempObj);
       }
     }
