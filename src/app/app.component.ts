@@ -11,6 +11,9 @@ export class AppComponent implements OnInit {
   help =
     '[@#@metatag Dynatable 1@#@,  Name, Title, Law School Graduation Year, Rate (specify Currency Type)]';
 
+    test = "http://localhost:4201/#/create-contract/New";
+    test1 ="http://localhost:4201/#/create-contract/New?firmid=1115&dataid=190";
+
   templateMetaData = {
     flexFieldLabel:
       '[  Name, Title, Law School Graduation Year, Rate (specify Currency Type)]',
@@ -20,6 +23,8 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit() {
+    console.log(this.test.includes('?firmid'));
+    console.log(this.test1.includes('?firmid'));
     this.contractgenDynaExtract();
     this.panelfirmDynaExtract();
   }
