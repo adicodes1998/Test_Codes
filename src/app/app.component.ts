@@ -11,8 +11,10 @@ export class AppComponent implements OnInit {
   help =
     '[@#@metatag Dynatable 1@#@,  Name, Title, Law School Graduation Year, Rate (specify Currency Type)]';
 
-    test = "http://localhost:4201/#/create-contract/New";
-    test1 ="http://localhost:4201/#/create-contract/New?firmid=1115&dataid=190";
+  test = 'http://localhost:4201/#/create-contract/New';
+  test1 = 'http://localhost:4201/#/create-contract/New?firmid=1115&dataid=190';
+  capAmountReplacement =
+    'There is an overall billing cap on this matter of {{CAP_AMOUNT}} | null';
 
   templateMetaData = {
     flexFieldLabel:
@@ -23,15 +25,21 @@ export class AppComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.capAmountReplacementLogic();
     console.log(this.test.includes('?firmid'));
     console.log(this.test1.includes('?firmid'));
     this.contractgenDynaExtract();
     this.panelfirmDynaExtract();
   }
 
+  capAmountReplacementLogic() {
+    let temp = this.capAmountReplacement.split('|')[0];
+    console.log(temp);
+  }
+
   panelfirmDynaExtract() {
     console.log('panelfirmDynaExtract START');
-    let tkarr=[];
+    let tkarr = [];
     console.log();
     //Table headers Extraction
     let tableHeaders = this.templateMetaData.flexFieldLabel
@@ -43,17 +51,15 @@ export class AppComponent implements OnInit {
       .slice(1, -1)
       .split(',');
     console.log(flexFieldNames);
-      for (let i = 0; i < tableHeaders.length; i++) {
-        console.log(flexFieldNames[i]);
-        let tempObj = {
-          flexFieldName: flexFieldNames[i],
-          flexFieldLabel: tableHeaders[i],
-        };
-        console.log('Hello', tempObj);
-        tkarr.push(tempObj);
-      }
-    
-    
+    for (let i = 0; i < tableHeaders.length; i++) {
+      console.log(flexFieldNames[i]);
+      let tempObj = {
+        flexFieldName: flexFieldNames[i],
+        flexFieldLabel: tableHeaders[i],
+      };
+      console.log('Hello', tempObj);
+      tkarr.push(tempObj);
+    }
 
     console.log(tkarr);
     console.log('panelfirmDynaExtract END');
